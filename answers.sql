@@ -37,17 +37,20 @@ WHERE
 
 -- Question 2
 
--- First table: Orders (OrderID, CustomerName)
-SELECT DISTINCT
-    OrderID,
-    CustomerName
-FROM 
-    Orders;
+-- Create the OrderDetails table (already in 1NF)
+CREATE TABLE OrderDetails (
+    OrderID INT,
+    CustomerName VARCHAR(100),
+    Product VARCHAR(100),
+    Quantity INT
+);
 
--- Second table: Product details (OrderID, Product, Quantity)
-SELECT
-    OrderID,
-    Product,
-    Quantity
-FROM 
-    Product;
+-- Insert the sample data
+INSERT INTO OrderDetails (OrderID, CustomerName, Product, Quantity)
+VALUES
+    (101, 'John Doe', 'Laptop', 2),
+    (101, 'John Doe', 'Mouse', 1),
+    (102, 'Jane Smith', 'Tablet', 3),
+    (102, 'Jane Smith', 'Keyboard', 1),
+    (102, 'Jane Smith', 'Mouse', 2),
+    (103, 'Emily Clark', 'Phone', 1);
