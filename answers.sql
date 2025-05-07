@@ -54,3 +54,33 @@ VALUES
     (102, 'Jane Smith', 'Keyboard', 1),
     (102, 'Jane Smith', 'Mouse', 2),
     (103, 'Emily Clark', 'Phone', 1);
+
+-- Create Orders table (OrderID, CustomerName)
+CREATE TABLE Orders AS
+SELECT DISTINCT 
+    OrderID, 
+    CustomerName
+FROM 
+    OrderDetails;
+
+-- Add primary key to Orders table
+ALTER TABLE Orders
+ADD PRIMARY KEY (OrderID);
+
+-- Create OrderItems table (OrderID, Product, Quantity)
+CREATE TABLE OrderItems AS
+SELECT 
+    OrderID, 
+    Product, 
+    Quantity
+FROM 
+    OrderDetails;
+
+-- Add composite primary key to OrderItems table
+ALTER TABLE OrderItems
+ADD PRIMARY KEY (OrderID, Product);
+
+-- Add foreign key constraint
+ALTER TABLE OrderItems
+ADD CONSTRAINT fk_order
+FOREIGN KEY (OrderID) REFERENCES Orders(OrderID);
