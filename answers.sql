@@ -2,24 +2,23 @@
 SELECT 
     OrderID,
     CustomerName,
-    LTRIM(RTRIM(value)) AS Product
+    TRIM(unnest(string_to_array(Products, ','))) AS Product
 FROM 
-    ProductDetail
-CROSS APPLY 
-    STRING_SPLIT(Products, ',');
+    ProductDetail;
 
 -- Question 2
 
+-- First table: Orders (OrderID, CustomerName)
 SELECT DISTINCT
     OrderID,
     CustomerName
 FROM 
-    OrderDetails;
+    Orders;
 
+-- Second table: Product details (OrderID, Product, Quantity)
 SELECT
     OrderID,
     Product,
     Quantity
 FROM 
-    OrderDetails;
-
+    Product;
